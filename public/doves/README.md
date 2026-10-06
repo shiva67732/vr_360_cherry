@@ -1,0 +1,1 @@
+Animated dove by Microsoft, from https://github.com/microsoft/fluentui-emoji-animated/tree/main/assets/Dove. MIT license in LICENSE.txt. Original APNG retained. dove-atlas.webp contains every second frame in a 6 by 6 grid, 84 ms per frame (3.024 second loop). These are billboard illustrations, not volumetric bird models.

@@ -7,6 +7,7 @@ import * as THREE from 'three'
 import { Garden } from '../scenes/World'
 import { Envelope } from '../scenes/Envelope'
 import { Sky } from '../scenes/Sky'
+import { Doves } from '../scenes/Doves'
 import { LookController } from '../controls/LookController'
 import { useExperience } from '../state/experienceStore'
 import { atLeast } from '../utils/state'
@@ -43,4 +44,5 @@ function WorldReady({onReady}:{onReady:()=>void}){useEffect(onReady,[onReady]);r
 export function Experience({onReady}:{onReady:()=>void}){const state=useExperience(s=>s.state),quality=useExperience(s=>s.quality)
  return <Canvas shadows={quality!=='LOW'} dpr={quality==='LOW'?[.75,1]:quality==='MEDIUM'?[1,1.35]:[1,1.65]} gl={{antialias:quality!=='LOW',powerPreference:'high-performance'}} onCreated={({gl})=>{gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1.05}}>
   <Suspense fallback={null}><Garden/><Envelope/><Sky/><Rig/><WorldReady onReady={onReady}/>{quality!=='LOW'&&<EffectComposer multisampling={quality==='HIGH'?4:0}><Bloom intensity={atLeast(state,'WORLD_REVEAL')?.48:0} luminanceThreshold={.85} mipmapBlur/><Vignette darkness={.34} offset={.28}/></EffectComposer>}</Suspense>
+  <Doves/>
  </Canvas>}
