@@ -19,7 +19,6 @@ function Rig(){const positionRig=useRef<THREE.Group>(null),orientationRig=useRef
     if(state==='RANGOLI_TRAVEL')gsap.to(p,{z:-7.3,y:1.8,duration:3.35,ease:'power1.inOut'})
     if(state==='COUPLE_REVEAL')gsap.to(p,{z:-7.8,y:2,duration:1.35,ease:'sine.inOut'})
     if(state==='RING_REVEAL')gsap.to(p,{z:-6.8,y:2.25,duration:2.5,ease:'sine.inOut'})
-    if(state==='FINALE')gsap.to(p,{x:3,z:-6,y:2.5,duration:4,ease:'sine.inOut'})
   },[state,runId])
   useEffect(()=>{
     const recenter=()=>{
