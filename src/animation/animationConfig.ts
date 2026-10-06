@@ -1,0 +1,1 @@
+export const animationClips = { bride:{ idle:['Idle','Breathing'], dance:['Dance','SlowDance'], ring:['RingExchange','Engagement'], final:['FinalPose','Pose'] }, groom:{ idle:['Idle','Breathing'], dance:['Dance','SlowDance'], ring:['RingExchange','Engagement'], final:['FinalPose','Pose'] } }

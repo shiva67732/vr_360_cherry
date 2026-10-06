@@ -1,0 +1,30 @@
+.date-confirmed {
+  align-self: end;
+  margin-bottom: max(7vh, env(safe-area-inset-bottom));
+  padding: .9rem 1.35rem;
+  display: grid;
+  gap: .18rem;
+  min-width: min(88vw, 21rem);
+  border-top: 1px solid #e8c47d88;
+  border-bottom: 1px solid #e8c47d55;
+  background: linear-gradient(90deg, transparent, #071b16d8 18%, #071b16d8 82%, transparent);
+  animation: rise 1s both;
+  text-shadow: 0 2px 12px #000;
+}
+.date-confirmed small { text-transform: uppercase; letter-spacing: .22em; color: #e8c47d; font-size: .58rem; }
+.date-confirmed strong { font: 400 clamp(1.9rem, 8vw, 2.8rem) 'Great Vibes', cursive; color: #fff3d2; }
+.date-confirmed span { font: 500 .75rem Manrope; letter-spacing: .12em; color: #f1d69b; }
+.date-confirmed em { margin-top: .5rem; font: 500 .88rem 'Cormorant Garamond'; letter-spacing: .06em; color: #fff0c8; }
+
+.dismissible-popup { position: relative; padding-top: 3.5rem; }
+.couple-popup { align-self: start; margin-top: 12vh; }
+.couple-popup .names.compact { margin-top: 0; }
+.overlay .popup-close {
+  position: absolute; top: .35rem; right: .35rem; z-index: 1;
+  width: 44px; height: 44px; padding: 0; margin: 0;
+  display: grid; place-items: center; pointer-events: auto;
+  border: 0; border-radius: 50%;
+  background: transparent; color: #fff3d2;
+  font: 400 1.1rem/1 system-ui; letter-spacing: 0; cursor: pointer;
+}
+.overlay .popup-close:focus-visible { outline: 2px solid #fff3d2; outline-offset: 3px; }
