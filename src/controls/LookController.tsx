@@ -56,7 +56,7 @@ export function LookController({ orientationRig }:{ orientationRig: React.RefObj
     const surface=el.closest('main')||el
     const previousTouchAction=surface.style.touchAction
     surface.style.touchAction='none'
-    const down=(e:PointerEvent)=>{ if(!e.isPrimary||e.button!==0||d.pointerId!==null)return;if(e.target instanceof Element&&e.target.closest('button,a,select,input,textarea,[contenteditable="true"],[role="button"]'))return;d.pointerId=e.pointerId;d.x=e.clientX;d.y=e.clientY;el.setPointerCapture(e.pointerId) }
+    const down=(e:PointerEvent)=>{ if(!e.isPrimary||e.button!==0||d.pointerId!==null)return;if(e.target instanceof Element&&e.target.closest('button,a,select,input,textarea,[contenteditable="true"],[role="button"],[data-look-ui]'))return;d.pointerId=e.pointerId;d.x=e.clientX;d.y=e.clientY;el.setPointerCapture(e.pointerId) }
     const move=(e:PointerEvent)=>{ if(e.pointerId!==d.pointerId)return;Object.assign(d,dragLook(d.yaw,d.pitch,e.clientX-d.x,e.clientY-d.y));d.x=e.clientX;d.y=e.clientY;e.preventDefault() }
     const up=(e:PointerEvent)=>{if(e.pointerId!==d.pointerId)return;d.pointerId=null;if(el.hasPointerCapture(e.pointerId))el.releasePointerCapture(e.pointerId)}
     surface.addEventListener('pointerdown',down);surface.addEventListener('pointermove',move);surface.addEventListener('pointerup',up);surface.addEventListener('pointercancel',up);surface.addEventListener('lostpointercapture',up)

@@ -1,11 +1,11 @@
 export const invitation = {
   brideName: 'Vaishnavi K R',
   groomName: 'Prem Kiran',
-  date: '20 December 2026',
-  time: '6:30 PM onwards',
-  venueName: 'The Royal Garden',
-  venueAddress: 'Your venue address, city',
-  directionsUrl: 'https://maps.google.com/',
+  date: '15 October 2026',
+  time: '10:00–11:30 AM',
+  venueName: 'Ravi Kiran Estate',
+  venueAddress: 'Badamanavarathekaval, Karnataka 560082',
+  directionsUrl: 'https://maps.app.goo.gl/NsyAKMfdyhq74Ref9',
   musicEnabled: true,
 } as const
 
