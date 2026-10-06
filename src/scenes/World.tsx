@@ -54,7 +54,7 @@ function GardenPanorama({lit}:{lit:boolean}){
   return null
 }
 
-function Stage(){const state=useExperience(s=>s.state),show=atLeast(state,'COUPLE_REVEAL');const {scene}=useGLTF('/models/stage/garden-wedding-arch.glb');const arch=useMemo(()=>{const copy=scene.clone(true);copy.traverse(o=>{if(o instanceof THREE.Mesh){o.castShadow=true;o.receiveShadow=true}});return copy},[scene]);return <group position={[0,0,-14]} visible={show}>
+function Stage(){const state=useExperience(s=>s.state),show=atLeast(state,'COUPLE_REVEAL');const {scene}=useGLTF('/models/stage/garden-wedding-arch.glb');const arch=useMemo(()=>{const copy=scene.clone(true);copy.traverse(o=>{if(o instanceof THREE.Mesh){o.castShadow=true;o.receiveShadow=true}});return copy},[scene]);return <group position={[0,0,-13.2]} visible={show}>
   <mesh position={[0,.2,.15]} receiveShadow castShadow><boxGeometry args={[5,.4,2.25]}/><meshStandardMaterial color="#6f4b32" roughness={.8}/></mesh>
   {Array.from({length:10},(_,i)=><mesh key={i} position={[-2.25+i*.5,.415,.15]} receiveShadow><boxGeometry args={[.47,.035,2.15]}/><meshStandardMaterial color={i%2?'#b68456':'#a9784c'} roughness={.72}/></mesh>)}
   <mesh position={[0,.32,1.285]}><boxGeometry args={[5.04,.13,.055]}/><meshStandardMaterial color="#d2aa5e" metalness={.55} roughness={.35}/></mesh>

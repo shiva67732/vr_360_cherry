@@ -51,7 +51,7 @@ export function Doves() {
         map.needsUpdate = true
         const material = new THREE.SpriteMaterial({ map, transparent: true, depthWrite: false, toneMapped: false })
         const bird = new THREE.Sprite(material)
-        bird.userData.size = (i < 8 ? .65 + (i % 3) * .1 : .95 + (i % 3) * .12) * 1.5
+        bird.userData.size = (i < 8 ? .65 + (i % 3) * .1 : .95 + (i % 3) * .12) * 1.32
         bird.userData.faceRight = i % 2 === 0
         bird.userData.twirled = -100
         bird.scale.setScalar(bird.userData.size)
@@ -100,7 +100,7 @@ export function Doves() {
       bird.position.set(
         Math.sin(angle) * radiusX,
         (stageBird ? 3.7 : sceneBird ? 2.9 : 3.2) + (index % 3) * .65 + Math.sin(t * (stageBird ? .65 : .45) + i * 1.7) * (stageBird ? .35 : .7),
-        (stageBird ? -14 : sceneBird ? -6 : -5) + Math.cos(angle) * radiusZ,
+        (stageBird ? -13.2 : sceneBird ? -6 : -5) + Math.cos(angle) * radiusZ,
       )
       // Face the direction of travel on screen, even when guests turn around.
       const screenVelocity = Math.cos(angle) * radiusX * speed * camera.matrixWorld.elements[0]

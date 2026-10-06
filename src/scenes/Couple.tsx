@@ -8,7 +8,7 @@ import { useExperience } from '../state/experienceStore'
 const modelUrl = '/models/couple-rigged-2p5d.glb'
 // The illustration includes transparent margins, so its mesh bounds are wider
 // than the visible characters. Enlarge further to make the artwork fill the stage.
-const coupleWidth = 5 * 1.05
+const coupleWidth = 5 * 1.16
 
 // Own the cloned GPU resources; never dispose resources in drei's shared cache.
 function createInstance(source: Group) {
