@@ -28,3 +28,4 @@
   font: 400 1.1rem/1 system-ui; letter-spacing: 0; cursor: pointer;
 }
 .overlay .popup-close:focus-visible { outline: 2px solid #fff3d2; outline-offset: 3px; }
+.utility .recenter-button { width: auto; padding: 0 .8rem; font-size: .7rem; letter-spacing: .04em; }

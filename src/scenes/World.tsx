@@ -13,7 +13,7 @@ function FairyLights(){return <group>{Array.from({length:18},(_,i)=><mesh key={i
 export function Garden(){const state=useExperience(s=>s.state),lit=atLeast(state,'WORLD_REVEAL');return <group>
   <GardenPanorama lit={lit}/><fog attach="fog" args={['#07140f',10,48]}/><GardenLighting lit={lit}/>
   {lit&&<><FairyLights/><Particles kind="fireflies"/><CherryBlossoms/></>}
-  <Stage/><Venue/>
+  <Stage/>
  </group>}
 
 function GardenLighting({lit}:{lit:boolean}){
@@ -67,5 +67,3 @@ function Stage(){const state=useExperience(s=>s.state),show=atLeast(state,'COUPL
  </group>}
 
 useGLTF.preload('/models/stage/garden-wedding-arch.glb')
-
-export function Venue(){const state=useExperience(s=>s.state),show=atLeast(state,'VENUE_REVEAL');return <group position={[0,0,12]} visible={show}><pointLight position={[0,4,0]} color="#ffbd66" intensity={10} distance={12}/><mesh position-y={2}><boxGeometry args={[8,4,2.5]}/><meshStandardMaterial color="#b98a5c"/></mesh><mesh position={[0,4.3,0]} rotation-z={Math.PI/4}><boxGeometry args={[4,4,.7]}/><meshStandardMaterial color="#7f3f32"/></mesh><mesh position={[0,1.5,-1.3]}><boxGeometry args={[2,3,.2]}/><meshStandardMaterial color="#321b16"/></mesh></group>}

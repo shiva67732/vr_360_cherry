@@ -21,6 +21,18 @@ function Rig(){const positionRig=useRef<THREE.Group>(null),orientationRig=useRef
     if(state==='RING_REVEAL')gsap.to(p,{z:-6.8,y:2.25,duration:2.5,ease:'sine.inOut'})
     if(state==='FINALE')gsap.to(p,{x:3,z:-6,y:2.5,duration:4,ease:'sine.inOut'})
   },[state,runId])
+  useEffect(()=>{
+    const recenter=()=>{
+      if(!positionRig.current)return
+      gsap.killTweensOf(positionRig.current.position)
+      const current=useExperience.getState().state
+      const destination=atLeast(current,'COUPLE_REVEAL')?{x:0,y:2,z:-7.8}:atLeast(current,'RANGOLI_TRAVEL')?{x:0,y:1.8,z:-7.3}:{x:0,y:1.65,z:2}
+      gsap.to(positionRig.current.position,{...destination,duration:.5,ease:'sine.inOut'})
+      hold.current=0
+    }
+    window.addEventListener('recenter-orientation',recenter)
+    return()=>window.removeEventListener('recenter-orientation',recenter)
+  },[])
   useFrame(({camera},dt)=>{const direction=new THREE.Vector3();camera.getWorldDirection(direction)
     if(state==='WAITING_LOOK_UP'){hold.current=direction.y>.48?hold.current+dt:0;if(hold.current>.7){hold.current=0;set('DATE_REVEAL')}}
     if(state==='WAITING_TURN_AROUND'){hold.current=direction.z>.55?hold.current+dt:0;if(hold.current>.7){hold.current=0;set('VENUE_REVEAL')}}

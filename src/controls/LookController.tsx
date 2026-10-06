@@ -15,6 +15,7 @@ export function LookController({ orientationRig }:{ orientationRig: React.RefObj
   const target=useRef(new THREE.Quaternion()), raw=useRef(new THREE.Quaternion()), previousRaw=useRef(new THREE.Quaternion())
   const yawOffset=useRef(new THREE.Quaternion())
   const sensorOrientation=useRef(new THREE.Quaternion())
+  const homeCalibration=useRef(false)
   const calibrated=useRef(false), drag=useRef({yaw:0,pitch:0,pointerId:null as number|null,x:0,y:0})
   const { gl }=useThree()
 
@@ -27,9 +28,12 @@ export function LookController({ orientationRig }:{ orientationRig: React.RefObj
       if(calibrated.current&&previousRaw.current.angleTo(raw.current)>1.05)return
       previousRaw.current.copy(raw.current)
       if(!calibrated.current){
-        const forward=new THREE.Vector3(0,0,-1).applyQuaternion(raw.current)
-        const heading=Math.atan2(forward.x,-forward.z)
-        yawOffset.current.setFromAxisAngle(new THREE.Vector3(0,1,0),heading)
+        if(homeCalibration.current)yawOffset.current.copy(raw.current).invert()
+        else {
+          const forward=new THREE.Vector3(0,0,-1).applyQuaternion(raw.current)
+          const heading=Math.atan2(forward.x,-forward.z)
+          yawOffset.current.setFromAxisAngle(new THREE.Vector3(0,1,0),heading)
+        }
         calibrated.current=true
       }
       // Preserve the phone's native pitch and roll, correcting only its compass
@@ -42,10 +46,10 @@ export function LookController({ orientationRig }:{ orientationRig: React.RefObj
   },[sensor,setSensor])
 
   useEffect(()=>{
-    const recenter=()=>{calibrated.current=false;drag.current.yaw=0;drag.current.pitch=0;sensorOrientation.current.identity()}
+    const recenter=()=>{homeCalibration.current=true;if(calibrated.current)yawOffset.current.copy(raw.current).invert();drag.current.yaw=0;drag.current.pitch=0;sensorOrientation.current.identity();target.current.identity();orientationRig.current?.quaternion.identity()}
     window.addEventListener('recenter-orientation',recenter)
     return()=>window.removeEventListener('recenter-orientation',recenter)
-  },[])
+  },[orientationRig])
 
   useEffect(()=>{
     const el=gl.domElement, d=drag.current
